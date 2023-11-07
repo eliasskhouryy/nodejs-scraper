@@ -23,6 +23,9 @@ const formattedDate = `${formatTwoDigits(currentDate.getDate())}${formatTwoDigit
 // Create the filename with the formatted date
 const filename = `scraped_data/linkedIn_data_${formattedDate}.csv`;
 
+// Counters
+let counter = 0;
+
 const writeToFile = (title, categories, link, roles, website, industry, companySize, headquaters) => {
 	// Check if any categories contain "Philippines" or "Philippine"
 	let headerWritten = false; // Flag to track if the header has been written
@@ -116,10 +119,13 @@ const writeToFile = (title, categories, link, roles, website, industry, companyS
 			return {website, industry, companySize, headquaters};
 		});
 
+		counter++;
+
 		console.log('website:', aboutData.website);
 		console.log('industry:', aboutData.industry);
 		console.log('company size:', aboutData.companySize);
 		console.log('headquaters:', aboutData.headquaters);
+		console.log('counter:', counter);
 
 		writeToFile(scrapedData.title, scrapedData.categories, url, businessDevelopmentRoles, aboutData.website, aboutData.industry, aboutData.companySize, aboutData.headquaters);
 	}
